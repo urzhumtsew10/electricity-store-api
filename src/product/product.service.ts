@@ -36,7 +36,9 @@ export class ProductService {
     return `This action updates a #${id} product`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: number) {
+    const products = await this.findAll();
+    const currentProduct = products.filter((product) => product.id === id)[0];
+    return this.productRepository.remove(currentProduct);
   }
 }

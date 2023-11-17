@@ -31,8 +31,11 @@ export class CategoryService {
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
     return `This action updates a #${id} category`;
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  async remove(id: number) {
+    const categories = await this.findAll();
+    const currentCategory = categories.filter(
+      (category) => category.id === id,
+    )[0];
+    return this.categoryRepository.remove(currentCategory);
   }
 }
