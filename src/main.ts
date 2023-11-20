@@ -11,12 +11,12 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
-  app.use(
-    cors({
-      credentials: true,
-      origin: '*',
-    }),
-  );
+  let allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*');
+    next();
+  };
+  app.use(allowCrossDomain);
   // app.enableCors();
   await app.listen(3030);
 }
