@@ -12,13 +12,6 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  app.use(
-    cors({
-      credentials: true,
-      origin: true,
-    }),
-  );
-
   app.enableCors();
   await app.listen(3030);
 }
