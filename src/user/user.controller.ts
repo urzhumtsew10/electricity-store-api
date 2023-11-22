@@ -24,7 +24,6 @@ export class UserController {
   }
 
   @Post('auth')
-  @Header('Access-Control-Allow-Origin', '*')
   async auth(
     @Body() createUserDto: CreateUserDto,
     @Res({ passthrough: true }) response: FastifyReply,
