@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Header,
   Res,
 } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -18,11 +19,13 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
+  @Header('Cache-Control', 'no-cache, no-store, must-revalidate')
   async register(@Body() createUserDto: CreateUserDto) {
     return this.userService.register(createUserDto);
   }
 
   @Post('auth')
+  @Header('Cache-Control', 'Access-Control-Allow-Origin')
   async auth(
     @Body() createUserDto: CreateUserDto,
     @Res({ passthrough: true }) response: FastifyReply,
