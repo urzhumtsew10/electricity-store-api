@@ -6,8 +6,8 @@ import {
   Patch,
   Param,
   Delete,
-  Header,
   Res,
+  Header,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -24,6 +24,7 @@ export class UserController {
   }
 
   @Post('auth')
+  @Header('Access-Control-Allow-Origin', '*')
   async auth(
     @Body() createUserDto: CreateUserDto,
     @Res({ passthrough: true }) response: FastifyReply,
