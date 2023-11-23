@@ -11,10 +11,7 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  app.enableCors({
-    allowedHeaders: '*',
-    origin: '*',
-  });
+  app.enableCors();
 
   await app.listen(3030);
 }
